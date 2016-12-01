@@ -59,44 +59,37 @@ function sendMessage(recipientId, message) {
 function kittenMessage(recipientId, text) {
     
     text = text || "";
-    //var values = text.split(' ');
+    var values = text.split(' ');
     
-    //if (values.length === 3 && values[0] === 'kitten') {
-        //if (Number(values[1]) > 0 && Number(values[2]) > 0) {
+    if (values.length === 3 && values[0] === 'kitten') {
+        if (Number(values[1]) > 0 && Number(values[2]) > 0) {
             
-            //var imageUrl = "https://placekitten.com/" + Number(values[1]) + "/" + Number(values[2]);
-        if(text)  {
+            var imageUrl = "https://placekitten.com/" + Number(values[1]) + "/" + Number(values[2]);
+            
             message = {
                 "attachment": {
                     "type": "template",
                     "payload": {
                         "template_type": "list",
+                        "top_element_style": "compact",
                         "elements": [
-                            {
-                                "title": "Classic T-Shirt Collection",
-                                "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
-                                "subtitle": "See all our colors",
-                                "default_action": {
-                                    "type": "web_url",
-                                    "url": "https://peterssendreceiveapp.ngrok.io/shop_collection",
-                                    "messenger_extensions": true,
-                                    "webview_height_ratio": "tall",
-                                    "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
-                                },
-                                "buttons": [
-                                    {
-                                        "title": "View",
-                                        "type": "web_url",
-                                        "url": "https://peterssendreceiveapp.ngrok.io/collection",
-                                        "messenger_extensions": true,
-                                        "webview_height_ratio": "tall",
-                                        "fallback_url": "https://peterssendreceiveapp.ngrok.io/"                        
-                                    }
-                                ]
-                            },
+                            // "title": "Kitten",
+                            // "subtitle": "Cute kitten picture",
+                            // "image_url": imageUrl ,
+                            // "buttons": [{
+                            //     "type": "web_url",
+                            //     "url": imageUrl,
+                            //     "title": "Show kitten"
+                            //     }, {
+                            //     "type": "postback",
+                            //     "title": "I like this",
+                            //     "payload": "User " + recipientId + " likes kitten " + imageUrl,
+                            // }]
+
+
                             {
                                 "title": "Classic White T-Shirt",
-                                "image_url": "https://peterssendreceiveapp.ngrok.io/img/white-t-shirt.png",
+                                "image_url": imageUrl,
                                 "subtitle": "100% Cotton, 200% Comfortable",
                                 "default_action": {
                                     "type": "web_url",
@@ -107,7 +100,7 @@ function kittenMessage(recipientId, text) {
                                 },
                                 "buttons": [
                                     {
-                                        "title": "Shop Now",
+                                        "title": "Buy",
                                         "type": "web_url",
                                         "url": "https://peterssendreceiveapp.ngrok.io/shop?item=100",
                                         "messenger_extensions": true,
@@ -118,7 +111,7 @@ function kittenMessage(recipientId, text) {
                             },
                             {
                                 "title": "Classic Blue T-Shirt",
-                                "image_url": "https://peterssendreceiveapp.ngrok.io/img/blue-t-shirt.png",
+                                "image_url": imageUrl,
                                 "subtitle": "100% Cotton, 200% Comfortable",
                                 "default_action": {
                                     "type": "web_url",
@@ -129,7 +122,7 @@ function kittenMessage(recipientId, text) {
                                 },
                                 "buttons": [
                                     {
-                                        "title": "Shop Now",
+                                        "title": "Buy",
                                         "type": "web_url",
                                         "url": "https://peterssendreceiveapp.ngrok.io/shop?item=101",
                                         "messenger_extensions": true,
@@ -140,7 +133,7 @@ function kittenMessage(recipientId, text) {
                             },
                             {
                                 "title": "Classic Black T-Shirt",
-                                "image_url": "https://peterssendreceiveapp.ngrok.io/img/black-t-shirt.png",
+                                "image_url": imageUrl,
                                 "subtitle": "100% Cotton, 200% Comfortable",
                                 "default_action": {
                                     "type": "web_url",
@@ -151,7 +144,7 @@ function kittenMessage(recipientId, text) {
                                 },
                                 "buttons": [
                                     {
-                                        "title": "Shop Now",
+                                        "title": "Buy",
                                         "type": "web_url",
                                         "url": "https://peterssendreceiveapp.ngrok.io/shop?item=102",
                                         "messenger_extensions": true,
@@ -159,15 +152,37 @@ function kittenMessage(recipientId, text) {
                                         "fallback_url": "https://peterssendreceiveapp.ngrok.io/"                        
                                     }
                                 ]                
+                            },
+                            {
+                                "title": "Classic Gray T-Shirt",
+                                "image_url": imageUrl,
+                                "subtitle": "100% Cotton, 200% Comfortable",
+                                "default_action": {
+                                    "type": "web_url",
+                                    "url": "https://peterssendreceiveapp.ngrok.io/view?item=103",
+                                    "messenger_extensions": true,
+                                    "webview_height_ratio": "tall",
+                                    "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                                },
+                                "buttons": [
+                                    {
+                                        "title": "Buy",
+                                        "type": "web_url",
+                                        "url": "https://peterssendreceiveapp.ngrok.io/shop?item=103",
+                                        "messenger_extensions": true,
+                                        "webview_height_ratio": "tall",
+                                        "fallback_url": "https://peterssendreceiveapp.ngrok.io/"                        
+                                    }
+                                ]                
                             }
                         ],
-                         "buttons": [
+                        "buttons": [
                             {
                                 "title": "View More",
                                 "type": "postback",
                                 "payload": "payload"                        
                             }
-                        ]  
+                        ] 
                     }
                 }
             };
@@ -176,12 +191,9 @@ function kittenMessage(recipientId, text) {
             
             return true;
         }
-
-        return false;
-        //}
-    //}
+    }
     
-    //return false;
+    return false;
     
 };
 
