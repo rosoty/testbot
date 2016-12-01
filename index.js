@@ -74,10 +74,10 @@ function kittenMessage(recipientId, text) {
                         "elements": [{
                             "title": "Kitten",
                             "subtitle": "Cute kitten picture",
-                            "image_url": imageUrl ,
+                            "image_url": "http://machogrill63.ru/wp-content/uploads/2016/08/Hamburger-Food-Photography-Wallpaper-HD.jpg" ,
                             "buttons": [{
                                 "type": "web_url",
-                                "url": imageUrl,
+                                "url": "http://machogrill63.ru/wp-content/uploads/2016/08/Hamburger-Food-Photography-Wallpaper-HD.jpg",
                                 "title": "Show kitten"
                                 }, {
                                 "type": "postback",
