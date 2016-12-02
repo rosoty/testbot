@@ -25,9 +25,9 @@ app.post('/webhook', function (req, res) {
     var events = req.body.entry[0].messaging;
     for (i = 0; i < events.length; i++) {
         var event = events[i];
-        if (event.messagebbb && event.messagebbb.text) {
+        if (event.message && event.message.text) {
             if (!kittenMessage(event.sender.id, event.message.text)) {
-                sendMessage(event.sender.id, {text: "Echo: " + event.messagebbb.text + ", SenderId= " + event.sender.id });
+                sendMessage(event.sender.id, {text: "Echo: " + event.message.text + ", SenderId= " + event.sender.id });
                // getInfo(event.sender.id, {first_name: "Your name: " +event.message.first_name});
             }
         } else if (event.postback) {
@@ -38,14 +38,14 @@ app.post('/webhook', function (req, res) {
     res.sendStatus(200);
 });
 // generic function sending messages
-function sendMessage(recipientId, messagebbb) {
+function sendMessage(recipientId, message) {
     request({
-        url: 'https://graph.facebook.com/v2.6/me/messagebbb',
+        url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
         method: 'POST',
         json: {
             recipient: {id: recipientId},
-            message: messagebbb,
+            message: message,
         }
     }, function(error, response, body) {
         if (error) {
