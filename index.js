@@ -25,9 +25,9 @@ app.post('/webhook', function (req, res) {
     var events = req.body.entry[0].messaging;
     for (i = 0; i < events.length; i++) {
         var event = events[i];
-        if (event.message && event.message.text) {
+        if (event.messagebbb && event.messagebbb.text) {
             if (!kittenMessage(event.sender.id, event.message.text)) {
-                sendMessage(event.sender.id, {text: "Echo: " + event.message.first_name + ", SenderId= " + event.sender.id });
+                sendMessage(event.sender.id, {text: "Echo: " + event.messagebbb.text + ", SenderId= " + event.sender.id });
                // getInfo(event.sender.id, {first_name: "Your name: " +event.message.first_name});
             }
         } else if (event.postback) {
@@ -38,14 +38,14 @@ app.post('/webhook', function (req, res) {
     res.sendStatus(200);
 });
 // generic function sending messages
-function sendMessage(recipientId, message) {
+function sendMessage(recipientId, messagebbb) {
     request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
+        url: 'https://graph.facebook.com/v2.6/me/messagebbb',
         qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
         method: 'POST',
         json: {
             recipient: {id: recipientId},
-            message: message,
+            message: messagebbb,
         }
     }, function(error, response, body) {
         if (error) {
@@ -58,21 +58,7 @@ function sendMessage(recipientId, message) {
 
 // Get User Information
 function getInfo(recipientId, message) {
-    request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
-        method: 'GET',
-        json: {
-            recipient: {id: recipientId},
-            message: message,
-        }
-    }, function(error, response, body) {
-        if (error) {
-            console.log('Error sending message: ', error);
-        } else if (response.body.error) {
-            console.log('Error: ', response.body.error);
-        }
-    });
+    let url = "https://graph.facebook.com/v2.6/"+recipientId+"?access_token=PAGE_ACCESS_TOKEN";
 };
 
 // send rich message with kitten
