@@ -28,6 +28,7 @@ app.post('/webhook', function (req, res) {
         if (event.message && event.message.text) {
             if (!kittenMessage(event.sender.id, event.message.text)) {
                 sendMessage(event.sender.id, {text: "Echo: " + event.message.text + ", SenderId= " + event.sender.id });
+                getInfo(event.sender.id);
                // getInfo(event.sender.id, {first_name: "Your name: " +event.message.first_name});
             }
         } else if (event.postback) {
@@ -57,8 +58,24 @@ function sendMessage(recipientId, message) {
 };
 
 // Get User Information
-function getInfo(recipientId, message) {
-    let url = "https://graph.facebook.com/v2.6/"+recipientId+"?access_token=PAGE_ACCESS_TOKEN";
+function getInfo(recipientId) {
+    let page = "EAAJHzdazACcBAObFeyDso15ZAiZC8ZBDQ5nL87A5bfJpZC77BqCfR6KGSaVKnVCCSGKitZCJm43P7vz08qzaZAvbUOjsXQiKODQWoJHhtmzPYLevFS2xzZAcwC9ZCCPfleazPI4JAJHciVXGQizmhpOv0gLJ2aiEOnBUHMZAm8E5oAwZDZD";
+    request({
+        url: 'https://graph.facebook.com/v2.6/'+recipientId+'?access_token="'+page+'"',
+        //qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
+        method: 'GET',
+        // json: {
+        //     recipient: {id: recipientId},
+        //     first_name: {first_name: message.first_name},
+        // }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending message: ', error);
+        } else if (response) {
+            console.log('Error: ', response);
+            return response;
+        }
+    });
 };
 
 // send rich message with kitten
