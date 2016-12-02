@@ -27,11 +27,12 @@ app.post('/webhook', function (req, res) {
         var event = events[i];
         if (event.message && event.message.text) {
             if (!kittenMessage(event.sender.id, event.message.text)) {
-                sendMessage(event.sender.id, {text: "Echo: " + event.message.text + event.message.first_name + event.message.gender});
+                //sendMessage(event.sender.id, {text: "Echo: " + event.message.text });
+                sendMessage(receivedPostback(event));
             }
         } else if (event.postback) {
-            console.log("Postback received: " + JSON.stringify(event.postback));
-            // receivedPostback(event);
+            //console.log("Postback received: " + JSON.stringify(event.postback));
+            receivedPostback(event);
         }
     }
     res.sendStatus(200);
@@ -160,10 +161,10 @@ function kittenMessage(recipientId, text) {
 function receivedPostback(event) {
     var senderID = event.sender.id;
     var first_name = event.sender.first_name;
-    var first_name = event.sender.last_name;
-    var first_name = event.sender.profile_pic;
-    var first_name = event.sender.locale;
-    var first_name = event.sender.gender;
+    var last_name = event.sender.last_name;
+    var profile_pic = event.sender.profile_pic;
+    var local = event.sender.local;
+    var gender = event.sender.gender;
     var recipientID = event.recipient.id;
     var timeOfPostback = event.timestamp;
 
