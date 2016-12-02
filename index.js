@@ -159,6 +159,11 @@ function kittenMessage(recipientId, text) {
 
 function receivedPostback(event) {
     var senderID = event.sender.id;
+    var first_name = event.sender.first_name;
+    var first_name = event.sender.last_name;
+    var first_name = event.sender.profile_pic;
+    var first_name = event.sender.locale;
+    var first_name = event.sender.gender;
     var recipientID = event.recipient.id;
     var timeOfPostback = event.timestamp;
 
