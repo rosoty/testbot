@@ -60,22 +60,10 @@ function sendMessage(recipientId, message) {
 // Get User Information
 function getInfo(recipientId) {
     let page = "EAAJHzdazACcBAObFeyDso15ZAiZC8ZBDQ5nL87A5bfJpZC77BqCfR6KGSaVKnVCCSGKitZCJm43P7vz08qzaZAvbUOjsXQiKODQWoJHhtmzPYLevFS2xzZAcwC9ZCCPfleazPI4JAJHciVXGQizmhpOv0gLJ2aiEOnBUHMZAm8E5oAwZDZD";
-    request({
-        url: 'https://graph.facebook.com/v2.6/'+recipientId+'?access_token="'+page+'"',
-        //qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
-        method: 'GET',
-        // json: {
-        //     recipient: {id: recipientId},
-        //     first_name: {first_name: message.first_name},
-        // }
-    }, function(error, response, body) {
-        if (error) {
-            console.log('Error sending message: ', error);
-        } else if (response) {
-            console.log('Error: ', response);
-            return response;
-        }
-    });
+    let url = 'https://graph.facebook.com/v2.6/'+recipientId+'?access_token="'+page+'"';
+    if(recipientId != ""){
+        return url.first_name + " - " + url.last_name;
+    }
 };
 
 // send rich message with kitten
