@@ -186,7 +186,7 @@ function CatMessage(recipientId, text) {
     text = text || "";
     var values = text.split(' ');
     
-    if (values == 'cat') {
+    if (values[0] === 'cat') {
         message:{
             "attachment":{
                 "type":"template",
