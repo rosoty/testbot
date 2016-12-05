@@ -26,8 +26,10 @@ app.post('/webhook', function (req, res) {
     for (i = 0; i < events.length; i++) {
         var event = events[i];
         if(event.message && event.message.text){
-            if (!webMessage(event.sender.id, event.message.text)) {
+            if (webMessage(event.sender.id, event.message.text)) {
                 sendMessage(event.sender.id, {text: "Echo: " + event.message.text + ", SenderId= " + event.sender.id });               
+            } else if(CatMessage(event.sender.id, event.message.text)){
+                sendMessage(event.sender.id, event.message.text)
             }
         }
         else if(event.postback){
@@ -194,32 +196,32 @@ function CatMessage(recipientId, text) {
     //text = text || "";
     //var values = text.split(' ');
     
-    // if (text) {
-    //     message:{
-    //         "attachment":{
-    //             "type":"template",
-    //             "payload":{
-    //                 "template_type":"button",
-    //                 "text":"What do you want to do next?",
-    //                 "buttons":[
-    //                     {
-    //                         "type":"web_url",
-    //                         "url":"https://petersapparel.parseapp.com",
-    //                         "title":"Show Website"
-    //                     },
-    //                     {
-    //                         "type":"postback",
-    //                         "title":"Start Chatting",
-    //                         "payload":"USER_DEFINED_PAYLOAD"
-    //                     }
-    //                 ]
-    //             }
-    //         }
-    //     }
-    //     sendMessage(recipientId, message);
-    //     return true; 
-    // }  
-    // return false;
+    if (text == 'cat') {
+        message:{
+            "attachment":{
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"What do you want to do next?",
+                    "buttons":[
+                        {
+                            "type":"web_url",
+                            "url":"https://petersapparel.parseapp.com",
+                            "title":"Show Website"
+                        },
+                        {
+                            "type":"postback",
+                            "title":"Start Chatting",
+                            "payload":"USER_DEFINED_PAYLOAD"
+                        }
+                    ]
+                }
+            }
+        }
+        sendMessage(recipientId, message);
+        return true; 
+    }  
+    return false;
     
 };
 
@@ -227,7 +229,7 @@ function CatMessage(recipientId, text) {
 function webMessage(recipientId, text) {  
     //text = text || "";
     var imageUrl = "http://shfcs.org/en/wp-content/uploads/2015/11/MedRes_Product-presentation-2.jpg";
-    if(text){
+    if(text == "web"){
         message = {
                 "attachment": {
                     "type": "template",
