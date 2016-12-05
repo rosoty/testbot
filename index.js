@@ -195,7 +195,7 @@ function kittenMessage(recipientId, text) {
                                     "type":"web_url",
                                     "url":"http://edition.cnn.com/",
                                     "title":"Android",
-                                    "webview_height_ratio": "tall"
+                                    "webview_height_ratio": "full"
                                   }
                             ]
                         }]
