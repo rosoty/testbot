@@ -26,11 +26,8 @@ app.post('/webhook', function (req, res) {
     for (i = 0; i < events.length; i++) {
         var event = events[i];
         if (event.message && event.message.text) {
-            if (!kittenMessage(event.sender.id, event.message.text)) {
+            if (!CatMessage(event.sender.id, event.message.text)) {
                 sendMessage(event.sender.id, {text: "Echo: " + event.message.text + ", SenderId= " + event.sender.id });               
-            }
-            else if (CatMessage(event.sender.id, event.message.text)) {
-                 CatMessage();
             }
         }
         else if (event.postback) {
@@ -189,33 +186,30 @@ function CatMessage(recipientId, text) {
     text = text || "";
     var values = text.split(' ');
     
-    if (values.length === 3 && values[0] === 'cat') {
-        if (Number(values[1]) > 0 && Number(values[2]) > 0) {
-            
-            var imageUrl = "https://placekitten.com/" + Number(values[1]) + "/" + Number(values[2]);
-            
-            message = {
-                "text":"Pick a color:",
-                "quick_replies":[
-                  {
-                    "content_type":"text",
-                    "title":"Red",
-                    "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
-                  },
-                  {
-                    "content_type":"text",
-                    "title":"Green",
-                    "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
-                  }
-                ]
-            };
-    
-            sendMessage(recipientId, message);
-            
-            return true;
+    if (values == 'cat') {
+        message:{
+            "attachment":{
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"What do you want to do next?",
+                    "buttons":[
+                        {
+                            "type":"web_url",
+                            "url":"https://petersapparel.parseapp.com",
+                            "title":"Show Website"
+                        },
+                        {
+                            "type":"postback",
+                            "title":"Start Chatting",
+                            "payload":"USER_DEFINED_PAYLOAD"
+                        }
+                    ]
+                }
+            }
         }
-    }
-    
+        return true; 
+    }  
     return false;
     
 };
