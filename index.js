@@ -31,7 +31,11 @@ app.post('/webhook', function (req, res) {
                 //getInfo(event.sender.id);
                // getInfo(event.sender.id, {first_name: "Your name: " +event.message.first_name});
             }
-        } else if (event.postback) {
+            else if (event.message.text == "cat") {
+                 CatMessage(event.sender.id, event.message.text);
+            }
+        }
+        else if (event.postback) {
             console.log("Postback received: " + JSON.stringify(event.postback));
             // receivedPostback(event);
         }
@@ -190,25 +194,41 @@ function kittenMessage(recipientId, text) {
     
 };
 
-function receivedPostback(event) {
-    var senderID = event.sender.id;
-    var first_name = event.sender.first_name;
-    var last_name = event.sender.last_name;
-    var profile_pic = event.sender.profile_pic;
-    var local = event.sender.local;
-    var gender = event.sender.gender;
-    var recipientID = event.recipient.id;
-    var timeOfPostback = event.timestamp;
+// Categories
 
-    // The 'payload' param is a developer-defined field which is set in a postback 
-    // button for Structured Messages. 
-    var payload = event.postback.payload;
-
-    console.log("Received postback for user %d and page %d with payload '%s' " + 
-    "at %d", senderID, recipientID, payload, timeOfPostback);
-
-    // When a postback is called, we'll send a message back to the sender to 
-    // let them know it was successful
-    sendMessage(senderID, "Postback called");
-}
+function CatMessage(recipientId, text) {
+    
+    text = text || "";
+    var values = text.split(' ');
+    
+    if (values.length === 3 && values[0] === 'cat') {
+        if (Number(values[1]) > 0 && Number(values[2]) > 0) {
+            
+            var imageUrl = "https://placekitten.com/" + Number(values[1]) + "/" + Number(values[2]);
+            
+            message = {
+                "text":"Pick a color:",
+                "quick_replies":[
+                  {
+                    "content_type":"text",
+                    "title":"Red",
+                    "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Green",
+                    "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
+                  }
+                ]
+            };
+    
+            sendMessage(recipientId, message);
+            
+            return true;
+        }
+    }
+    
+    return false;
+    
+};
 
