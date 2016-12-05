@@ -26,12 +26,10 @@ app.post('/webhook', function (req, res) {
     for (i = 0; i < events.length; i++) {
         var event = events[i];
         if(event.message && event.message.text){
-            if(event.message.text == "cat"){
-                CatMessage(event.sender.id, event.message.text);
-            }
+            "Echo: " + event.message.text;
         }
         else if(event.postback){
-            CatMessage(event.sender.id, event.message.text);
+            //CatMessage(event.sender.id, event.message.text);
         }
         // if (event.message && event.message.text) {
         //     if (!CatMessage(event.sender.id, event.message.text)) {
@@ -191,8 +189,8 @@ function kittenMessage(recipientId, text) {
 
 function CatMessage(recipientId, text) {
     
-    text = text || "";
-    var values = text.split(' ');
+    //text = text || "";
+    //var values = text.split(' ');
     
     if (text) {
         message:{
