@@ -26,10 +26,12 @@ app.post('/webhook', function (req, res) {
     for (i = 0; i < events.length; i++) {
         var event = events[i];
         if(event.message && event.message.text){
-            if (webMessage(event.sender.id, event.message.text)) {
-                sendMessage(event.sender.id, {text: "Echo: " + event.message.text + ", SenderId= " + event.sender.id });               
-            } else if(CatMessage(event.sender.id, event.message.text)){
-                sendMessage(event.sender.id, event.message.text)
+            if (event.message.text == 'cat') {
+                CatMessage(event.sender.id, event.message.text);              
+            } else if(event.message.text == 'web'){
+                webMessage(event.sender.id, event.message.text);
+            }else{
+                sendMessage(event.sender.id, {text: "Welcome What can I help you ? " + event.message.text}); 
             }
         }
         else if(event.postback){
@@ -196,7 +198,7 @@ function CatMessage(recipientId, text) {
     //text = text || "";
     //var values = text.split(' ');
     
-    if (text === 'cat') {
+    if (text) {
         message:{
             "attachment":{
                 "type":"template",
@@ -229,7 +231,7 @@ function CatMessage(recipientId, text) {
 function webMessage(recipientId, text) {  
     //text = text || "";
     var imageUrl = "http://shfcs.org/en/wp-content/uploads/2015/11/MedRes_Product-presentation-2.jpg";
-    if(text === "web"){
+    if(text){
         message = {
                 "attachment": {
                     "type": "template",
