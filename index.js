@@ -25,15 +25,20 @@ app.post('/webhook', function (req, res) {
     var events = req.body.entry[0].messaging;
     for (i = 0; i < events.length; i++) {
         var event = events[i];
-        if (event.message && event.message.text) {
-            if (!CatMessage(event.sender.id, event.message.text)) {
-                sendMessage(event.sender.id, {text: "Echo: " + event.message.text + ", SenderId= " + event.sender.id });               
+        if(event.message && event.message.text){
+            if(event.message.text == "cat"){
+                CatMessage(event.sender.id, event.message.text);
             }
         }
-        else if (event.postback) {
-            console.log("Postback received: " + JSON.stringify(event.postback));
-            // receivedPostback(event);
-        }
+        // if (event.message && event.message.text) {
+        //     if (!CatMessage(event.sender.id, event.message.text)) {
+        //         sendMessage(event.sender.id, {text: "Echo: " + event.message.text + ", SenderId= " + event.sender.id });               
+        //     }
+        // }
+        // else if (event.postback) {
+        //     console.log("Postback received: " + JSON.stringify(event.postback));
+        //     // receivedPostback(event);
+        // }
     }
     res.sendStatus(200);
 });
@@ -186,7 +191,7 @@ function CatMessage(recipientId, text) {
     text = text || "";
     var values = text.split(' ');
     
-    if (values[0] === 'cat') {
+    if (text) {
         message:{
             "attachment":{
                 "type":"template",
