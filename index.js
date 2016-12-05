@@ -28,7 +28,7 @@ app.post('/webhook', function (req, res) {
         if (event.message && event.message.text) {
             if (!kittenMessage(event.sender.id, event.message.text)) {
                 sendMessage(event.sender.id, {text: "Echo: " + event.message.text + ", SenderId= " + event.sender.id });
-                getInfo(event.sender.id);
+                //getInfo(event.sender.id);
                // getInfo(event.sender.id, {first_name: "Your name: " +event.message.first_name});
             }
         } else if (event.postback) {
@@ -57,24 +57,6 @@ function sendMessage(recipientId, message) {
     });
 };
 
-// Get User Information
-function getInfo(recipientId) {
-    request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
-        method: 'GET',
-        json: {
-            first_name: {id: recipientId},
-            last_name: message,
-        }
-    }, function(error, response, body) {
-        if (error) {
-            console.log('Error sending message: ', error);
-        } else if (response.body.error) {
-            console.log('Error: ', response.body.error);
-        }
-    });
-};
 
 // send rich message with kitten
 function kittenMessage(recipientId, text) {
