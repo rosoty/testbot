@@ -194,38 +194,39 @@ function CatMessage(recipientId, text) {
     //text = text || "";
     //var values = text.split(' ');
     
-    if (text) {
-        message:{
-            "attachment":{
-                "type":"template",
-                "payload":{
-                    "template_type":"button",
-                    "text":"What do you want to do next?",
-                    "buttons":[
-                        {
-                            "type":"web_url",
-                            "url":"https://petersapparel.parseapp.com",
-                            "title":"Show Website"
-                        },
-                        {
-                            "type":"postback",
-                            "title":"Start Chatting",
-                            "payload":"USER_DEFINED_PAYLOAD"
-                        }
-                    ]
-                }
-            }
-        }
-        sendMessage(recipientId, message);
-        return true; 
-    }  
-    return false;
+    // if (text) {
+    //     message:{
+    //         "attachment":{
+    //             "type":"template",
+    //             "payload":{
+    //                 "template_type":"button",
+    //                 "text":"What do you want to do next?",
+    //                 "buttons":[
+    //                     {
+    //                         "type":"web_url",
+    //                         "url":"https://petersapparel.parseapp.com",
+    //                         "title":"Show Website"
+    //                     },
+    //                     {
+    //                         "type":"postback",
+    //                         "title":"Start Chatting",
+    //                         "payload":"USER_DEFINED_PAYLOAD"
+    //                     }
+    //                 ]
+    //             }
+    //         }
+    //     }
+    //     sendMessage(recipientId, message);
+    //     return true; 
+    // }  
+    // return false;
     
 };
 
 // send rich message with kitten
 function webMessage(recipientId, text) {  
-    text = text || "";
+    //text = text || "";
+    var imageUrl = "http://shfcs.org/en/wp-content/uploads/2015/11/MedRes_Product-presentation-2.jpg";
     if(text){
         message = {
                 "attachment": {
