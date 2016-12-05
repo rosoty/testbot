@@ -59,11 +59,21 @@ function sendMessage(recipientId, message) {
 
 // Get User Information
 function getInfo(recipientId) {
-    let page = "EAAJHzdazACcBAObFeyDso15ZAiZC8ZBDQ5nL87A5bfJpZC77BqCfR6KGSaVKnVCCSGKitZCJm43P7vz08qzaZAvbUOjsXQiKODQWoJHhtmzPYLevFS2xzZAcwC9ZCCPfleazPI4JAJHciVXGQizmhpOv0gLJ2aiEOnBUHMZAm8E5oAwZDZD";
-    let url = 'https://graph.facebook.com/v2.6/'+recipientId+'?access_token="'+page+'"';
-    if(recipientId != ""){
-        return url.first_name + " - " + url.last_name;
-    }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
+        method: 'GET',
+        json: {
+            first_name: {id: recipientId},
+            last_name: message,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending message: ', error);
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error);
+        }
+    });
 };
 
 // send rich message with kitten
@@ -90,7 +100,8 @@ function kittenMessage(recipientId, text) {
                                 "buttons": [{
                                     "type": "web_url",
                                     "url": "http://againstallgrain.com/wp-content/uploads/2013/03/Iced_Vanilla_Coffee-006.jpg",
-                                    "title": "Order"
+                                    "title": "Order",
+                                    "webview_height_ratio": "compact"
                                     }, {
                                     "type": "postback",
                                     "title": "details",
@@ -104,7 +115,8 @@ function kittenMessage(recipientId, text) {
                                 "buttons": [{
                                     "type": "web_url",
                                     "url": "http://leelalicious.com/wp-content/uploads/2016/04/Thai-Lemon-Iced-Tea.jpg",
-                                    "title": "Order"
+                                    "title": "Order",
+                                    "webview_height_ratio": "compact"
                                     }, {
                                     "type": "postback",
                                     "title": "details",
@@ -118,7 +130,8 @@ function kittenMessage(recipientId, text) {
                                 "buttons": [{
                                     "type": "web_url",
                                     "url": "http://machogrill63.ru/wp-content/uploads/2016/08/Hamburger-Food-Photography-Wallpaper-HD.jpg",
-                                    "title": "Order"
+                                    "title": "Order",
+                                    "webview_height_ratio": "compact"
                                     }, {
                                     "type": "postback",
                                     "title": "details",
@@ -132,7 +145,8 @@ function kittenMessage(recipientId, text) {
                                 "buttons": [{
                                     "type": "web_url",
                                     "url": "http://www.chelseasmessyapron.com/wp-content/uploads/2015/04/The-BEST-Strawberry-and-Cream-Cake-Cream-Cheese-Frosting.jpg",
-                                    "title": "Order"
+                                    "title": "Order",
+                                    "webview_height_ratio": "compact"
                                     }, {
                                     "type": "postback",
                                     "title": "details",
@@ -146,7 +160,8 @@ function kittenMessage(recipientId, text) {
                                 "buttons": [{
                                     "type": "web_url",
                                     "url": "http://images2.laweekly.com/imager/demitasses-pistachio-rose-latte/u/745xauto/5299882/xmascoffee_demi01.jpg",
-                                    "title": "Order"
+                                    "title": "Order",
+                                    "webview_height_ratio": "compact"
                                     }, {
                                     "type": "postback",
                                     "title": "details",
