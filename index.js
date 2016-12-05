@@ -196,8 +196,7 @@ function kittenMessage(recipientId, text) {
                                     "url":"http://edition.cnn.com/",
                                     "title":"Android",
                                     "webview_height_ratio": "full",
-                                    "messenger_extensions": true,  
-                                    "fallback_url": "https://petersfancyapparel.com/fallback"
+                                    "messenger_extensions": true
                                   }
                             ]
                         }]
