@@ -208,6 +208,7 @@ function CatMessage(recipientId, text) {
                 }
             }
         }
+        sendMessage(recipientId, message);
         return true; 
     }  
     return false;
