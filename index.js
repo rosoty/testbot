@@ -196,7 +196,7 @@ function CatMessage(recipientId, text) {
     //text = text || "";
     //var values = text.split(' ');
     
-    if (text == 'cat') {
+    if (text === 'cat') {
         message:{
             "attachment":{
                 "type":"template",
@@ -229,7 +229,7 @@ function CatMessage(recipientId, text) {
 function webMessage(recipientId, text) {  
     //text = text || "";
     var imageUrl = "http://shfcs.org/en/wp-content/uploads/2015/11/MedRes_Product-presentation-2.jpg";
-    if(text == "web"){
+    if(text === "web"){
         message = {
                 "attachment": {
                     "type": "template",
