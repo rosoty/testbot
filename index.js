@@ -86,8 +86,7 @@ function kittenMessage(recipientId, text) {
                                         "type": "web_url",
                                         "url": "http://againstallgrain.com/wp-content/uploads/2013/03/Iced_Vanilla_Coffee-006.jpg",
                                         "title": "Order",
-                                        "webview_height_ratio": "tall",
-                                        "display_text": "Close"
+                                        "webview_height_ratio": "tall"
                                     },
                                     {
                                         "type": "postback",
@@ -105,8 +104,7 @@ function kittenMessage(recipientId, text) {
                                         "type": "web_url",
                                         "url": "http://leelalicious.com/wp-content/uploads/2016/04/Thai-Lemon-Iced-Tea.jpg",
                                         "title": "Order",
-                                        "webview_height_ratio": "tall",
-                                        "display_text": "Close"
+                                        "webview_height_ratio": "tall"
                                     },
                                     {
                                         "type": "postback",
@@ -124,8 +122,7 @@ function kittenMessage(recipientId, text) {
                                         "type": "web_url",
                                         "url": "http://machogrill63.ru/wp-content/uploads/2016/08/Hamburger-Food-Photography-Wallpaper-HD.jpg",
                                         "title": "Order",
-                                        "webview_height_ratio": "tall",
-                                        "display_text": "Close"
+                                        "webview_height_ratio": "tall"
                                     },
                                     {
                                         "type": "postback",
@@ -143,8 +140,7 @@ function kittenMessage(recipientId, text) {
                                         "type": "web_url",
                                         "url": "http://www.chelseasmessyapron.com/wp-content/uploads/2015/04/The-BEST-Strawberry-and-Cream-Cake-Cream-Cheese-Frosting.jpg",
                                         "title": "Order",
-                                        "webview_height_ratio": "tall",
-                                        "display_text": "Close"
+                                        "webview_height_ratio": "tall"
                                     },
                                     {
                                         "type": "postback",
@@ -162,8 +158,7 @@ function kittenMessage(recipientId, text) {
                                         "type": "web_url",
                                         "url": "http://images2.laweekly.com/imager/demitasses-pistachio-rose-latte/u/745xauto/5299882/xmascoffee_demi01.jpg",
                                         "title": "Order",
-                                        "webview_height_ratio": "tall",
-                                        "display_text": "Close"
+                                        "webview_height_ratio": "tall"
                                     },
                                     {
                                         "type": "postback",
