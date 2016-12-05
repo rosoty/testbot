@@ -197,30 +197,33 @@ function CatMessage(recipientId, text) {
     
     //text = text || "";
     //var values = text.split(' ');
-    
+    var imageUrl = "http://demo.ajax-cart.com/photos/product/4/176/4.jpg";
     if (text) {
-        message:{
-            "attachment":{
-                "type":"template",
-                "payload":{
-                    "template_type":"button",
-                    "text":"What do you want to do next?",
-                    "buttons":[
-                        {
-                            "type":"web_url",
-                            "url":"https://petersapparel.parseapp.com",
-                            "title":"Show Website"
-                        },
-                        {
-                            "type":"postback",
-                            "title":"Start Chatting",
-                            "payload":"USER_DEFINED_PAYLOAD"
-                        }
-                    ]
+         message = {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [{
+                        "title": "Kitten",
+                        "subtitle": "Cute kitten picture",
+                        "image_url": imageUrl ,
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": imageUrl,
+                            "title": "Show kitten"
+                            }, {
+                            "type": "postback",
+                            "title": "I like this",
+                            "payload": "User " + recipientId + " likes kitten " + imageUrl,
+                        }]
+                    }]
                 }
             }
-        }
+        };
+    
         sendMessage(recipientId, message);
+        
         return true; 
     }  
     return false;
