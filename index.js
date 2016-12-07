@@ -86,26 +86,7 @@ app.post('/webhook', function (req, res) {
         var event = events[i];
         console.log("BABA_KH: "+JSON.stringify(event.message));
         if(event.message && event.message.attachments && event.message.attachments[0].payload && event.message.attachments[0].type=="location"){
-            console.log("POSITION RECIVED!_KH");
-            var lat=event.message.attachments[0].payload.coordinates.lat;
-            var longi=event.message.attachments[0].payload.coordinates.long;
-            var title=event.message.attachments[0].title;
-            var msg={
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": {
-                        "element": {
-                            "title": title,
-                            "image_url": "https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center="+lat+","+longi+"&zoom=25&markers="+lat+","+longi,
-                            "item_url": "http:\/\/maps.apple.com\/maps?q="+lat+","+longi+"&z=16"
-                        }
-                    }
-                }
-            }
-            var map2="http:\/\/maps.apple.com\/maps?q="+lat+","+longi+"&z=16";
-            var map1="https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center="+lat+","+longi+"&zoom=15&markers="+lat+","+longi;
+            
         }
         else if ((event.message && event.message.quick_reply && event.message.quick_reply.payload)|| (event.postback && event.postback.payload)){
             console.log("DROITE_KH");
@@ -137,10 +118,44 @@ app.post('/webhook', function (req, res) {
 
             }
             else{
-                sendMessage(event.sender.id,{"text": "welcome"+ event.message.text});
+                BookList(event.sender.id,event.message.text);
+                //sendMessage(event.sender.id,{"text": "welcome"+ event.message.text});
             }
         }
     }
     res.sendStatus(200);
 });
+
+function BookList(recipientId, text) {
+     var imageUrl = "https://placekitten.com/" + Number(values[1]) + "/" + Number(values[2]);
+    if(text){
+        message = {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [{
+                        "title": "Kitten",
+                        "subtitle": "Cute kitten picture",
+                        "image_url": imageUrl ,
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": imageUrl,
+                            "title": "Show kitten"
+                            }, {
+                            "type": "postback",
+                            "title": "I like this",
+                            "payload": "User " + recipientId + " likes kitten " + imageUrl,
+                        }]
+                    }]
+                }
+            }
+        };
+
+        sendMessage(recipientId, message);
+        
+        return true;
+    }  
+    return false; 
+}
 
