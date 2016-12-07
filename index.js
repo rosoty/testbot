@@ -2,8 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
 var app = express();
-// var mongodb = require("mongodb");
-// var db;
+var mongodb = require("mongodb");
+var db;
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -11,19 +11,19 @@ app.listen((process.env.PORT || 3000));
 
 
 //V1.1 Sal+text
-// mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
-//   if (err) {
-//     console.log(err);
-//     process.exit(1);
-//   }
+mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
+  if (err) {
+    console.log(err);
+    process.exit(1);
+  }
 
-//   // Save database object from the callback for reuse.
-//   db = database;
-//   console.log("Database connection ready");
+  // Save database object from the callback for reuse.
+  db = database;
+  console.log("Database connection ready");
 
-//   // Initialize the app.
+  // Initialize the app.
   
-// });
+});
 
 convertDate = function (time){
     var current=Date.now();
@@ -91,7 +91,26 @@ app.post('/webhook', function (req, res) {
 
 
         if(event.message && event.message.attachments && event.message.attachments[0].payload && event.message.attachments[0].type=="location"){
-            
+            console.log("POSITION RECIVED!_KH");
+            var lat=event.message.attachments[0].payload.coordinates.lat;
+            var longi=event.message.attachments[0].payload.coordinates.long;
+            var title=event.message.attachments[0].title;
+            var msg={
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": {
+                        "element": {
+                            "title": title,
+                            "image_url": "https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center="+lat+","+longi+"&zoom=25&markers="+lat+","+longi,
+                            "item_url": "http:\/\/maps.apple.com\/maps?q="+lat+","+longi+"&z=16"
+                        }
+                    }
+                }
+            }
+            var map2="http:\/\/maps.apple.com\/maps?q="+lat+","+longi+"&z=16";
+            var map1="https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center="+lat+","+longi+"&zoom=15&markers="+lat+","+longi;
         }
         else if ((event.message && event.message.quick_reply && event.message.quick_reply.payload)|| (event.postback && event.postback.payload)){
             console.log("DROITE_KH");
