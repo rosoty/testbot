@@ -118,6 +118,8 @@ app.post('/webhook', function (req, res) {
                 sendMessage(event.sender.id,{"text": "welcome hi"});
             }else if(str.toLowerCase()=="admin"){
                 sendMessage(event.sender.id,{"text": "welcome admin"});
+            }else{
+                sendMessage(event.sender.id,{"text": "welcome"+ event.message.text});
             }
         }
     }
