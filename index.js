@@ -11,7 +11,6 @@ app.listen((process.env.PORT || 3000));
 
 
 //V1.1 Sal+text
-
 mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
   if (err) {
     console.log(err);
@@ -41,11 +40,13 @@ convertDate = function (time){
     if(hours<24)
         return Math.round(hours)+" hours ago.";
     var days=hours/24;
-    return Math.round(days)+" days ago.";   
+    return Math.round(days)+" days ago.";
+    
+    
 }
 
-// generic function sending messages
 
+// generic function sending messages
 function sendMessage(recipientId, message) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -64,14 +65,13 @@ function sendMessage(recipientId, message) {
     });
 };
 
-// Server frontpage
 
+// Server frontpage
 app.get('/', function (req, res) {
     res.send('This is TestBot Server');
 });
 
 // Facebook Webhook
-
 app.get('/webhook', function (req, res) {
     if (req.query['hub.verify_token'] === 'testbot_verify_token') {
         res.send(req.query['hub.challenge']);
@@ -80,13 +80,37 @@ app.get('/webhook', function (req, res) {
     }
 });
 
+
+
+
 app.post('/webhook', function (req, res) {
     var events = req.body.entry[0].messaging;
     for (i = 0; i < events.length; i++) {
         var event = events[i];
         console.log("BABA_KH: "+JSON.stringify(event.message));
+
+
         if(event.message && event.message.attachments && event.message.attachments[0].payload && event.message.attachments[0].type=="location"){
-            
+            console.log("POSITION RECIVED!_KH");
+            var lat=event.message.attachments[0].payload.coordinates.lat;
+            var longi=event.message.attachments[0].payload.coordinates.long;
+            var title=event.message.attachments[0].title;
+            var msg={
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": {
+                        "element": {
+                            "title": title,
+                            "image_url": "https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center="+lat+","+longi+"&zoom=25&markers="+lat+","+longi,
+                            "item_url": "http:\/\/maps.apple.com\/maps?q="+lat+","+longi+"&z=16"
+                        }
+                    }
+                }
+            }
+            var map2="http:\/\/maps.apple.com\/maps?q="+lat+","+longi+"&z=16";
+            var map1="https:\/\/maps.googleapis.com\/maps\/api\/staticmap?size=764x400&center="+lat+","+longi+"&zoom=15&markers="+lat+","+longi;
         }
         else if ((event.message && event.message.quick_reply && event.message.quick_reply.payload)|| (event.postback && event.postback.payload)){
             console.log("DROITE_KH");
@@ -115,44 +139,10 @@ app.post('/webhook', function (req, res) {
             }else if(str.toLowerCase()=="admin"){
                 sendMessage(event.sender.id,{"text": "welcome admin"});
             }else{
-                //BookList(event.sender.id,event.message.text);
-                //sendMessage(event.sender.id,{"text": "welcome"+ event.message.text});
+                sendMessage(event.sender.id,{"text": "welcome"+ event.message.text});
             }
         }
     }
     res.sendStatus(200);
 });
-
-// function BookList(recipientId, text) {
-//     var imageUrl = "http://bousra.com/companyprofile/larryta/bustype/bus.jpg";
-//     if(text){
-//         message = {
-//             "attachment": {
-//                 "type": "template",
-//                 "payload": {
-//                     "template_type": "generic",
-//                     "elements": [{
-//                         "title": "Kitten",
-//                         "subtitle": "Cute kitten picture",
-//                         "image_url": imageUrl ,
-//                         "buttons": [{
-//                             "type": "web_url",
-//                             "url": imageUrl,
-//                             "title": "book"
-//                             }, {
-//                             "type": "postback",
-//                             "title": "favorite",
-//                             "payload": "User " + recipientId + " likes kitten " + imageUrl,
-//                         }]
-//                     }]
-//                 }
-//             }
-//         };
-
-//         sendMessage(recipientId, message);
-        
-//         return true;
-//     }  
-//     return false; 
-// }
 
