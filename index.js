@@ -68,6 +68,14 @@ app.post('/webhook', function (req, res) {
             {
                 sendMessage(event.sender.id,{"text": "Welcome ADMIN"});   
             }
+            else if(str.toLowerCase()=="from")
+            {
+                GetFrom(event.sender.id,event.message.text);
+            }
+            else if(str.toLowerCase()=="to")
+            {
+                GetTo(event.sender.id,event.message.text);
+            }
             else{
                 //sendMessage(event.sender.id,{"text": "Welcome "+ event.message.text});
                 AllBusCompany(event.sender.id,event.message.text);
@@ -168,6 +176,45 @@ function AllBusCompany(recipientId, text) {
         return true;
     }
 };
+
+// Get From 
+
+function GetFrom(recipientId, text){
+    var rep = recipientId;
+    if(text){
+        var msg={
+            "text":"Choose where you want to eat:",
+            "quick_replies":[
+              {
+                "content_type":"text",
+                "title":"Phnom Penh",
+                "image_url":"http://www.phnompenhpost.com/sites/default/files/ppp_favicon.ico",
+                "payload":rep+"_pp"
+              },
+              {
+                "content_type":"text",
+                "title":"Siem Reap",
+                "image_url":"https://image.freepik.com/free-icon/angkor-wat_318-133983.jpg",
+                "payload":rep+"_siepreap"
+              },
+              {
+                "content_type":"text",
+                "title":"Batdombong",
+                "image_url":"http://www.hrcambodia.com/images/location/Battambang.jpg",
+                "payload":rep+"_bb"
+              }
+            ]
+          };
+          sendMessage(recipientId, msg);
+          return true;
+    }
+};
+
+// Get To
+
+function GetTo(recipientId, text){
+
+}
 
 // Get Directio Map
 
