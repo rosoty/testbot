@@ -2,8 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
 var app = express();
-var mongodb = require("mongodb");
-var db;
+// var mongodb = require("mongodb");
+// var db;
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -11,19 +11,19 @@ app.listen((process.env.PORT || 3000));
 
 
 //V1.1 Sal+text
-mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
-  if (err) {
-    console.log(err);
-    process.exit(1);
-  }
+// mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
+//   if (err) {
+//     console.log(err);
+//     process.exit(1);
+//   }
 
-  // Save database object from the callback for reuse.
-  db = database;
-  console.log("Database connection ready");
+//   // Save database object from the callback for reuse.
+//   db = database;
+//   console.log("Database connection ready");
 
-  // Initialize the app.
+//   // Initialize the app.
   
-});
+// });
 
 convertDate = function (time){
     var current=Date.now();
