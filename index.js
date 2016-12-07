@@ -127,7 +127,7 @@ app.post('/webhook', function (req, res) {
 });
 
 function BookList(recipientId, text) {
-     var imageUrl = "https://placekitten.com/" + Number(values[1]) + "/" + Number(values[2]);
+     var imageUrl = "http://bousra.com/companyprofile/larryta/bustype/bus.jpg";
     if(text){
         message = {
             "attachment": {
