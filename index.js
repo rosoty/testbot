@@ -235,7 +235,7 @@ function Getdirection(recipientId, text){
               }
             ]
           };
-          sendMessage(event.sender.id, msg);
+          sendMessage(recipientId, msg);
           return true;
     }
 };
