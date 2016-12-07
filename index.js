@@ -61,7 +61,8 @@ app.post('/webhook', function (req, res) {
             console.log("TEXT:"+str);
             if(str.toLowerCase()=="hi")
             {
-                sendMessage(event.sender.id,{"text": "Welcome HI"});
+                //sendMessage(event.sender.id,{"text": "Welcome HI"});
+                Getdirection(event.sender.id,event.message.text);
             }
             else if(str.toLowerCase()=="admin")
             {
@@ -69,7 +70,7 @@ app.post('/webhook', function (req, res) {
             }
             else{
                 //sendMessage(event.sender.id,{"text": "Welcome "+ event.message.text});
-                BookingBusList(event.sender.id,event.message.text);
+                AllBusCompany(event.sender.id,event.message.text);
             }
         }
     }
@@ -97,7 +98,7 @@ function sendMessage(recipientId, message) {
 
 // List Booking Bus Function
 
-function BookingBusList(recipientId, text) {
+function AllBusCompany(recipientId, text) {
     var imageUrl = "http://bousra.com/companyprofile/larryta/bustype/bus.jpg";
     if(text){
         message = {
@@ -203,5 +204,38 @@ function BookingBusList(recipientId, text) {
         sendMessage(recipientId, message);
             
         return true;
+    }
+};
+
+// Get Directio Map
+
+function Getdirection(recipientId, text){
+    var rep = recipientId;
+    if(text){
+        var msg={
+            "text":"Choose where you want to eat:",
+            "quick_replies":[
+              {
+                "content_type":"text",
+                "title":"Delivery",
+                "image_url":"https://news.usc.edu/files/2015/10/delivery_WEB-824x549.jpg",
+                "payload":rep+"_delivery"
+              },
+              {
+                "content_type":"text",
+                "title":"Take Away",
+                "image_url":"http://www.asac.it/wp-content/uploads/2015/02/TakeAway-logo-350x280.jpg",
+                "payload":rep+"_takeaway"
+              },
+              {
+                "content_type":"text",
+                "title":"Indoor",
+                "image_url":"https://www.business2sell.com.au/images/blogs/20141002/pizza2.jpg",
+                "payload":rep+"_indoor"
+              }
+            ]
+          };
+          sendMessage(event.sender.id, msg);
+          return true;
     }
 };
