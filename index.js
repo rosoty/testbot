@@ -11,6 +11,7 @@ app.listen((process.env.PORT || 3000));
 
 
 //V1.1 Sal+text
+
 mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
   if (err) {
     console.log(err);
@@ -40,13 +41,11 @@ convertDate = function (time){
     if(hours<24)
         return Math.round(hours)+" hours ago.";
     var days=hours/24;
-    return Math.round(days)+" days ago.";
-    
-    
+    return Math.round(days)+" days ago.";   
 }
 
-
 // generic function sending messages
+
 function sendMessage(recipientId, message) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -65,13 +64,14 @@ function sendMessage(recipientId, message) {
     });
 };
 
-
 // Server frontpage
+
 app.get('/', function (req, res) {
     res.send('This is TestBot Server');
 });
 
 // Facebook Webhook
+
 app.get('/webhook', function (req, res) {
     if (req.query['hub.verify_token'] === 'testbot_verify_token') {
         res.send(req.query['hub.challenge']);
@@ -80,16 +80,11 @@ app.get('/webhook', function (req, res) {
     }
 });
 
-
-
-
 app.post('/webhook', function (req, res) {
     var events = req.body.entry[0].messaging;
     for (i = 0; i < events.length; i++) {
         var event = events[i];
         console.log("BABA_KH: "+JSON.stringify(event.message));
-
-
         if(event.message && event.message.attachments && event.message.attachments[0].payload && event.message.attachments[0].type=="location"){
             console.log("POSITION RECIVED!_KH");
             var lat=event.message.attachments[0].payload.coordinates.lat;
@@ -138,7 +133,10 @@ app.post('/webhook', function (req, res) {
                 sendMessage(event.sender.id,{"text": "welcome hi"});
             }else if(str.toLowerCase()=="admin"){
                 sendMessage(event.sender.id,{"text": "welcome admin"});
-            }else{
+            }else if(str.toLowerCase()=="location"){
+
+            }
+            else{
                 sendMessage(event.sender.id,{"text": "welcome"+ event.message.text});
             }
         }
