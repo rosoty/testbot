@@ -85,45 +85,45 @@ app.get('/webhook', function (req, res) {
 
 app.post('/webhook', function (req, res) {
     var events = req.body.entry[0].messaging;
-    for (i = 0; i < events.length; i++) {
-        var event = events[i];
-        console.log("BABA_KH: "+JSON.stringify(event.message));
+    // for (i = 0; i < events.length; i++) {
+    //     var event = events[i];
+    //     console.log("BABA_KH: "+JSON.stringify(event.message));
 
 
-        // if(event.message && event.message.attachments && event.message.attachments[0].payload && event.message.attachments[0].type=="location"){
+    //     if(event.message && event.message.attachments && event.message.attachments[0].payload && event.message.attachments[0].type=="location"){
             
-        // }
-        // else if ((event.message && event.message.quick_reply && event.message.quick_reply.payload)|| (event.postback && event.postback.payload)){
-        //     console.log("DROITE_KH");
-        //     if(event.postback)
-        //         var str=event.postback.payload;
-        //     else
-        //         var str=event.message.quick_reply.payload;
+    //     }
+    //     else if ((event.message && event.message.quick_reply && event.message.quick_reply.payload)|| (event.postback && event.postback.payload)){
+    //         console.log("DROITE_KH");
+    //         if(event.postback)
+    //             var str=event.postback.payload;
+    //         else
+    //             var str=event.message.quick_reply.payload;
 
-        //     console.log("STRE+"+str);
-        //     if(str.includes("step1")){
-        //             //"image_url":"https://www.business2sell.com.au/images/blogs/20141002/pizza2.jpg";
+    //         console.log("STRE+"+str);
+    //         if(str.includes("step1")){
+    //                 //"image_url":"https://www.business2sell.com.au/images/blogs/20141002/pizza2.jpg";
                 
-        //     }else if(str.includes("step2")){
+    //         }else if(str.includes("step2")){
          
 
-        //     }else if(str.includes("step3")){                
+    //         }else if(str.includes("step3")){                
             
-        //     }
-        // }
-        if(event.message && event.message.text){
-            console.log("MON SIMPLE TEXT");
-            var str=event.message.text;
-            console.log("TEXT:"+str);
-            if(str.toLowerCase()=="hi"){
-                sendMessage(event.sender.id,{"text": "welcome hi"});
-            }else if(str.toLowerCase()=="admin"){
-                sendMessage(event.sender.id,{"text": "welcome admin"});
-            }else{
-                sendMessage(event.sender.id,{"text": "welcome"+ event.message.text});
-            }
-        }
-    }
-    res.sendStatus(200);
+    //         }
+    //     }
+    //     if(event.message && event.message.text){
+    //         console.log("MON SIMPLE TEXT");
+    //         var str=event.message.text;
+    //         console.log("TEXT:"+str);
+    //         if(str.toLowerCase()=="hi"){
+    //             sendMessage(event.sender.id,{"text": "welcome hi"});
+    //         }else if(str.toLowerCase()=="admin"){
+    //             sendMessage(event.sender.id,{"text": "welcome admin"});
+    //         }else{
+    //             sendMessage(event.sender.id,{"text": "welcome"+ event.message.text});
+    //         }
+    //     }
+    // }
+    // res.sendStatus(200);
 });
 
