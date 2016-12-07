@@ -183,7 +183,7 @@ function GetFrom(recipientId, text){
     var rep = recipientId;
     if(text){
         var msg={
-            "text":"Choose where you want to eat:",
+            "text":"Choose place where are you ?",
             "quick_replies":[
               {
                 "content_type":"text",
@@ -213,7 +213,34 @@ function GetFrom(recipientId, text){
 // Get To
 
 function GetTo(recipientId, text){
-
+    var rep = recipientId;
+    if(text){
+        var msg={
+            "text":"Choose place where are do you want to go ?",
+            "quick_replies":[
+              {
+                "content_type":"text",
+                "title":"Kompong Cham",
+                "image_url":"http://www.hrcambodia.com/images/location/Kampong%20Cham.jpg",
+                "payload":rep+"_pp"
+              },
+              {
+                "content_type":"text",
+                "title":"Koh Kong",
+                "image_url":"http://www.hrcambodia.com/images/location/Koh%20Kong.jpg",
+                "payload":rep+"_siepreap"
+              },
+              {
+                "content_type":"text",
+                "title":"Kompong Som",
+                "image_url":"https://i.ytimg.com/vi/ge8Zl935vq0/hqdefault.jpg",
+                "payload":rep+"_bb"
+              }
+            ]
+          };
+          sendMessage(recipientId, msg);
+          return true;
+    }
 }
 
 // Get Directio Map
