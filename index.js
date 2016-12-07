@@ -115,13 +115,8 @@ function AllBusCompany(recipientId, text) {
                                     {
                                         "type": "web_url",
                                         "url": "http://againstallgrain.com/wp-content/uploads/2013/03/Iced_Vanilla_Coffee-006.jpg",
-                                        "title": "Order",
+                                        "title": "Book Now",
                                         "webview_height_ratio": "tall"
-                                    },
-                                    {
-                                        "type": "postback",
-                                        "title": "Like",
-                                        "payload": "User " + recipientId + " likes kitten " + imageUrl,
                                     }
                                 ]
                             },
@@ -133,13 +128,8 @@ function AllBusCompany(recipientId, text) {
                                     {
                                         "type": "web_url",
                                         "url": "http://leelalicious.com/wp-content/uploads/2016/04/Thai-Lemon-Iced-Tea.jpg",
-                                        "title": "Order",
+                                        "title": "Book Now",
                                         "webview_height_ratio": "tall"
-                                    },
-                                    {
-                                        "type": "postback",
-                                        "title": "Like",
-                                        "payload": "User " + recipientId + " likes kitten " + imageUrl,
                                     }
                                 ]
                             },
@@ -151,13 +141,8 @@ function AllBusCompany(recipientId, text) {
                                     {
                                         "type": "web_url",
                                         "url": "http://machogrill63.ru/wp-content/uploads/2016/08/Hamburger-Food-Photography-Wallpaper-HD.jpg",
-                                        "title": "Order",
+                                        "title": "Book Now",
                                         "webview_height_ratio": "tall"
-                                    },
-                                    {
-                                        "type": "postback",
-                                        "title": "Like",
-                                        "payload": "User " + recipientId + " likes kitten " + imageUrl,
                                     }
                                 ]
                             },
@@ -169,13 +154,8 @@ function AllBusCompany(recipientId, text) {
                                     {
                                         "type": "web_url",
                                         "url": "http://www.chelseasmessyapron.com/wp-content/uploads/2015/04/The-BEST-Strawberry-and-Cream-Cake-Cream-Cheese-Frosting.jpg",
-                                        "title": "Order",
+                                        "title": "Book Now",
                                         "webview_height_ratio": "tall"
-                                    },
-                                    {
-                                        "type": "postback",
-                                        "title": "Like",
-                                        "payload": "User " + recipientId + " likes kitten " + imageUrl,
                                     }
                                 ]
                             }
