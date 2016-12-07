@@ -109,7 +109,7 @@ function AllBusCompany(recipientId, text) {
                         "elements": [
                             {
                                 "title": "Express",
-                                "subtitle": "Express delivery passenger",
+                                "subtitle": "VGS EXPRESS TRANSPORTATION (MINI VAN)",
                                 "image_url": "http://bousra.com/companyprofile/larryta/bustype/bus.jpg" ,
                                 "buttons": [
                                     {
@@ -127,8 +127,8 @@ function AllBusCompany(recipientId, text) {
                             },
                             {     
                                 "title": "Towng Sing",
-                                "subtitle": "Towng Sing",
-                                "image_url": "http://leelalicious.com/wp-content/uploads/2016/04/Thai-Lemon-Iced-Tea.jpg" ,
+                                "subtitle": "To convey the best conceivable support of our clients and we plan to make and keep up our progress by giving excellent support of our clients.",
+                                "image_url": "http://tss-transport.com/wp-content/uploads/2016/03/aboutUS.jpg" ,
                                 "buttons": [
                                     {
                                         "type": "web_url",
@@ -144,9 +144,9 @@ function AllBusCompany(recipientId, text) {
                                 ]
                             },
                             {
-                                "title": "STRAWBERRY SMOOTHIES",
-                                "subtitle": "STRAWBERRY SMOOTHIES picture",
-                                "image_url": "http://bousra.com/companyprofile/larryta/bustype/bus.jpg" ,
+                                "title": "CAPITOL",
+                                "subtitle": "Various bus companies in Cambodia (Phnom Penh)",
+                                "image_url": "http://www.globalprice.info/rus/kombodjia/foto/2013/26.jpg" ,
                                 "buttons": [
                                     {
                                         "type": "web_url",
@@ -162,31 +162,13 @@ function AllBusCompany(recipientId, text) {
                                 ]
                             },
                             { 
-                                "title": "STRAWBERRY CAKE",
-                                "subtitle": "STRAWBERRY CAKE picture",
-                                "image_url": "http://www.chelseasmessyapron.com/wp-content/uploads/2015/04/The-BEST-Strawberry-and-Cream-Cake-Cream-Cheese-Frosting.jpg" ,
+                                "title": "Mekong Express",
+                                "subtitle": "Cambodia Impressive Travel",
+                                "image_url": "http://www.cambodiatourtravel.com/uploads/image/mekong-express-bus.jpg" ,
                                 "buttons": [
                                     {
                                         "type": "web_url",
                                         "url": "http://www.chelseasmessyapron.com/wp-content/uploads/2015/04/The-BEST-Strawberry-and-Cream-Cake-Cream-Cheese-Frosting.jpg",
-                                        "title": "Order",
-                                        "webview_height_ratio": "tall"
-                                    },
-                                    {
-                                        "type": "postback",
-                                        "title": "Like",
-                                        "payload": "User " + recipientId + " likes kitten " + imageUrl,
-                                    }
-                                ]
-                            },
-                            {
-                                "title": "CARAMEL LATTE",
-                                "subtitle": "CARAMEL LATTE",
-                                "image_url": "http://images2.laweekly.com/imager/demitasses-pistachio-rose-latte/u/745xauto/5299882/xmascoffee_demi01.jpg" ,
-                                "buttons": [
-                                    {
-                                        "type": "web_url",
-                                        "url": "http://images2.laweekly.com/imager/demitasses-pistachio-rose-latte/u/745xauto/5299882/xmascoffee_demi01.jpg",
                                         "title": "Order",
                                         "webview_height_ratio": "tall"
                                     },
