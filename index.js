@@ -123,36 +123,36 @@ app.post('/webhook', function (req, res) {
     res.sendStatus(200);
 });
 
-function BookList(recipientId, text) {
-     var imageUrl = "http://bousra.com/companyprofile/larryta/bustype/bus.jpg";
-    if(text){
-        message = {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": [{
-                        "title": "Kitten",
-                        "subtitle": "Cute kitten picture",
-                        "image_url": imageUrl ,
-                        "buttons": [{
-                            "type": "web_url",
-                            "url": imageUrl,
-                            "title": "Show kitten"
-                            }, {
-                            "type": "postback",
-                            "title": "I like this",
-                            "payload": "User " + recipientId + " likes kitten " + imageUrl,
-                        }]
-                    }]
-                }
-            }
-        };
+// function BookList(recipientId, text) {
+//     var imageUrl = "http://bousra.com/companyprofile/larryta/bustype/bus.jpg";
+//     if(text){
+//         message = {
+//             "attachment": {
+//                 "type": "template",
+//                 "payload": {
+//                     "template_type": "generic",
+//                     "elements": [{
+//                         "title": "Kitten",
+//                         "subtitle": "Cute kitten picture",
+//                         "image_url": imageUrl ,
+//                         "buttons": [{
+//                             "type": "web_url",
+//                             "url": imageUrl,
+//                             "title": "book"
+//                             }, {
+//                             "type": "postback",
+//                             "title": "favorite",
+//                             "payload": "User " + recipientId + " likes kitten " + imageUrl,
+//                         }]
+//                     }]
+//                 }
+//             }
+//         };
 
-        sendMessage(recipientId, message);
+//         sendMessage(recipientId, message);
         
-        return true;
-    }  
-    return false; 
-}
+//         return true;
+//     }  
+//     return false; 
+// }
 
