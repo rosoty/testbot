@@ -61,25 +61,24 @@ app.post('/webhook', function (req, res) {
             console.log("TEXT:"+str);
             if(str.toLowerCase()=="hi")
             {
-                //sendMessage(event.sender.id,{"text": "Welcome HI"});
-                Getdirection(event.sender.id,event.message.text);
-            }
-            else if(str.toLowerCase()=="admin")
-            {
-                sendMessage(event.sender.id,{"text": "Welcome ADMIN"});   
-            }
-            else if(str.toLowerCase()=="from")
-            {
-                GetFrom(event.sender.id,event.message.text);
-            }
-            else if(str.toLowerCase()=="to")
-            {
-                GetTo(event.sender.id,event.message.text);
-            }
-            else{
-                //sendMessage(event.sender.id,{"text": "Welcome "+ event.message.text});
                 AllBusCompany(event.sender.id,event.message.text);
+                //Getdirection(event.sender.id,event.message.text);
             }
+            // else if(str.toLowerCase()=="admin")
+            // {
+            //     sendMessage(event.sender.id,{"text": "Welcome ADMIN"});   
+            // }
+            // else if(str.toLowerCase()=="from")
+            // {
+            //     GetFrom(event.sender.id,event.message.text);
+            // }
+            // else if(str.toLowerCase()=="to")
+            // {
+            //     GetTo(event.sender.id,event.message.text);
+            // }
+            // else{
+            //     AllBusCompany(event.sender.id,event.message.text);
+            // }
         }
     }
     res.sendStatus(200);
@@ -112,6 +111,7 @@ function AllBusCompany(recipientId, text) {
         message = {
                 "attachment": {
                     "type": "template",
+                    "text":"All Bus Company : ",
                     "payload": {
                         "template_type": "generic",
                         "elements": [
@@ -216,7 +216,7 @@ function GetTo(recipientId, text){
     var rep = recipientId;
     if(text){
         var msg={
-            "text":"Choose place where are do you want to go ?",
+            "text":"Choose place where do you want to go ?",
             "quick_replies":[
               {
                 "content_type":"text",
