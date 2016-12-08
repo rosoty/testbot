@@ -111,7 +111,6 @@ function AllBusCompany(recipientId, text) {
         message = {
                 "attachment": {
                     "type": "template",
-                    "text":"All Bus Company : ",
                     "payload": {
                         "template_type": "generic",
                         "elements": [
