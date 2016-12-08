@@ -39,19 +39,22 @@ app.post('/webhook', function (req, res) {
                 var str=event.message.quick_reply.payload;
 
             console.log("STRE+"+str);
-            if(str.includes("step1"))
+            var a = event.sender.id+"_10";
+            var b = event.sender.id+"_20";
+            var c = event.sender.id+"_30";
+            if(str == a)
             {
-                    
+                  sendMessage(event.sender.id, {"text":" PAYLOAD == 10 "});  
                 
             }
-            else if(str.includes("step2"))
+            else if(str == b)
             {
-         
+                sendMessage(event.sender.id, {"text":" PAYLOAD == 20 "}); 
 
             }
-            else if(str.includes("step3"))
+            else if(str == c)
             {         
-            
+                sendMessage(event.sender.id, {"text":" PAYLOAD == 30 "}); 
             }
         }
         else if(event.message && event.message.text)
