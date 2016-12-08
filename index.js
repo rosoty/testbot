@@ -59,7 +59,7 @@ app.post('/webhook', function (req, res) {
             console.log("MON SIMPLE TEXT");
             var str=event.message.text;
             console.log("TEXT:"+str);
-            if(str.toLowerCase()=="hi")
+            if(str)
             {
                 AllBusCompany(event.sender.id,event.message.text);
                 //Getdirection(event.sender.id,event.message.text);
