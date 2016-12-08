@@ -42,6 +42,7 @@ app.post('/webhook', function (req, res) {
             var a = event.sender.id+"_10";
             var b = event.sender.id+"_20";
             var c = event.sender.id+"_30";
+            var d = event.sender.id+"_60";
             if(str == a)
             {
                   sendMessage(event.sender.id, {"text":" PAYLOAD == 10 "});  
@@ -55,6 +56,18 @@ app.post('/webhook', function (req, res) {
             else if(str == c)
             {         
                 sendMessage(event.sender.id, {"text":" PAYLOAD == 30 "}); 
+            }
+            else if(str == d)
+            {
+                var msg={
+                        "text":"Where are you located? ",
+                        "quick_replies":[
+                          {
+                            "content_type":"location",
+                          }
+                        ]
+                      };
+                sendMessage(event.sender.id, msg);
             }
         }
         else if(event.message && event.message.text)
@@ -316,4 +329,8 @@ function GetTime(recipientId, text){
         sendMessage(recipientId, msg);
         return true;
     }
+}
+
+function AllTicket(recipientId, text){
+
 }
