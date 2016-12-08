@@ -59,15 +59,7 @@ app.post('/webhook', function (req, res) {
             }
             else if(str == d)
             {
-                var msg={
-                        "text":"Where are you located? ",
-                        "quick_replies":[
-                          {
-                            "content_type":"location",
-                          }
-                        ]
-                      };
-                sendMessage(event.sender.id, msg);
+                GetLocation(event.sender.id, event.message.text);
             }
         }
         else if(event.message && event.message.text)
@@ -333,4 +325,23 @@ function GetTime(recipientId, text){
 
 function AllTicket(recipientId, text){
 
+}
+
+// Get Location
+
+function GetLocation(recipientId, text){
+    var rep = recipientId;
+    if(text){
+        var msg={
+            "text":"Where are you located? ",
+            "quick_replies":[
+                {
+                    "content_type":"location",
+                    "payload":rep+"_location"
+                }
+            ]
+        };
+        sendMessage(recipientId, msg);
+        return true;
+    }
 }
