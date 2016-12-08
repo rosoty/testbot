@@ -59,10 +59,14 @@ app.post('/webhook', function (req, res) {
             console.log("MON SIMPLE TEXT");
             var str=event.message.text;
             console.log("TEXT:"+str);
-            if(str)
+            if(str.toLowerCase()=="bus")
             {
                 AllBusCompany(event.sender.id,event.message.text);
                 //Getdirection(event.sender.id,event.message.text);
+            }
+            else if(str.toLowerCase()=="time")
+            {
+                GetTime(event.sender.id, event.message.text);
             }
             // else if(str.toLowerCase()=="admin")
             // {
@@ -274,3 +278,39 @@ function Getdirection(recipientId, text){
           return true;
     }
 };
+
+// Get Time function
+
+function GetTime(recipientId, text){
+    var rep = recipientId;
+    if(text){
+        var msg={
+            "text":"When do you want to come?:",
+            "quick_replies":[
+                {
+                    "content_type":"text",
+                    "title":"🕑 10 min",
+                    "payload":rep+"_10"
+                
+                },
+                {
+                    "content_type":"text",
+                    "title":"🕓 20 min",
+                    "payload":rep+"_20"
+                },
+                {
+                    "content_type":"text",
+                    "title":"🕕 30 min",
+                    "payload":rep+"_30"
+                },
+                {
+                    "content_type":"text",
+                    "title":"🕚 1 hour",
+                    "payload":rep+"_60"
+                }
+            ]
+        };
+        sendMessage(event.sender.id, msg);
+        return true;
+    }
+}
