@@ -78,8 +78,12 @@ app.post('/webhook', function (req, res) {
             else if(str.toLowerCase()=="time")
             {
                 GetTime(event.sender.id, event.message.text);
-            }   AllBusCompany(event.sender.id,event.message.text);
+            }
+            else{
+                AllBusCompany(event.sender.id,event.message.text);
+            }  
             
+
         }
     }
     res.sendStatus(200);
