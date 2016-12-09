@@ -79,10 +79,7 @@ app.post('/webhook', function (req, res) {
             {
                 GetTime(event.sender.id, event.message.text);
             }   AllBusCompany(event.sender.id,event.message.text);
-            else
-            {
-                
-            }
+            
         }
     }
     res.sendStatus(200);
