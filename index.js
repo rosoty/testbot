@@ -62,7 +62,6 @@ app.post('/webhook', function (req, res) {
             {
                 GetLocation(event.sender.id, event.message.text);
             }  
-            }
             else if(str == event.sender.id+"_pp")
             {
                 sendMessage(event.sender.id, {"text":" FROM PP "}); 
