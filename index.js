@@ -43,6 +43,7 @@ app.post('/webhook', function (req, res) {
             var b = event.sender.id+"_20";
             var c = event.sender.id+"_30";
             var d = event.sender.id+"_60";
+            var pp = event.sender.quick_replies.title;
             if(str == a)
             {
                   sendMessage(event.sender.id, {"text":" PAYLOAD == 10 "});  
@@ -60,6 +61,19 @@ app.post('/webhook', function (req, res) {
             else if(str == d)
             {
                 GetLocation(event.sender.id, event.message.text);
+            }  
+            }
+            else if(str == event.sender.id+"_pp")
+            {
+                sendMessage(event.sender.id, {"text":" FROM PP "}); 
+            }
+            else if(str == event.sender.id+"_siemreap")
+            {
+                sendMessage(event.sender.id, {"text":" FROM SIEMREAP "}); 
+            }
+            else if(str == event.sender.id+"_bb")
+            {
+                sendMessage(event.sender.id, {"text":" FROM BB "}); 
             }
         }
         else if(event.message && event.message.text)
@@ -80,7 +94,8 @@ app.post('/webhook', function (req, res) {
                 GetTime(event.sender.id, event.message.text);
             }
             else{
-                AllBusCompany(event.sender.id,event.message.text);
+                //AllBusCompany(event.sender.id,event.message.text);
+                GetFrom(event.sender.id, event.message.text);
             }  
             
 
@@ -199,7 +214,7 @@ function GetFrom(recipientId, text){
                 "content_type":"text",
                 "title":"Siem Reap",
                 "image_url":"https://image.freepik.com/free-icon/angkor-wat_318-133983.jpg",
-                "payload":rep+"_siepreap"
+                "payload":rep+"_siemreap"
               },
               {
                 "content_type":"text",
