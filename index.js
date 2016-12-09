@@ -66,7 +66,7 @@ app.post('/webhook', function (req, res) {
             }  
             else if(str == pp || str == sr || str == bb)
             {
-                sendMessage(event.sender.id, {"text":" FROM "+pp+sr+bb}); 
+                //sendMessage(event.sender.id, {"text":" FROM "+pp+sr+bb}); 
                 GetTo(event.sender.id, event.message.text);
             }
         }
