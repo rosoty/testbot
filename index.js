@@ -64,17 +64,10 @@ app.post('/webhook', function (req, res) {
             {
                 GetLocation(event.sender.id, event.message.text);
             }  
-            else if(str == pp)
+            else if(str == pp || str == sr || str == bb)
             {
-                sendMessage(event.sender.id, {"text":" FROM PP "}); 
-            }
-            else if(str == sr)
-            {
-                sendMessage(event.sender.id, {"text":" FROM SIEMREAP "}); 
-            }
-            else if(str == bb)
-            {
-                sendMessage(event.sender.id, {"text":" FROM BB "}); 
+                sendMessage(event.sender.id, {"text":" FROM "+pp+sr+bb}); 
+                GetTo(event.sender.id, event.message.text);
             }
         }
         else if(event.message && event.message.text)
