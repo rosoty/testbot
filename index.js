@@ -43,7 +43,9 @@ app.post('/webhook', function (req, res) {
             var b = event.sender.id+"_20";
             var c = event.sender.id+"_30";
             var d = event.sender.id+"_60";
-            var pp = event.sender.quick_replies.title;
+            var pp = event.sender.id+"_pp";
+            var sr = event.sender.id+"_siemreap";
+            var bb = event.sender.id+"_bb";
             if(str == a)
             {
                   sendMessage(event.sender.id, {"text":" PAYLOAD == 10 "});  
@@ -62,15 +64,15 @@ app.post('/webhook', function (req, res) {
             {
                 GetLocation(event.sender.id, event.message.text);
             }  
-            else if(str == event.sender.id+"_pp")
+            else if(str == pp)
             {
                 sendMessage(event.sender.id, {"text":" FROM PP "}); 
             }
-            else if(str == event.sender.id+"_siemreap")
+            else if(str == sr)
             {
                 sendMessage(event.sender.id, {"text":" FROM SIEMREAP "}); 
             }
-            else if(str == event.sender.id+"_bb")
+            else if(str == bb)
             {
                 sendMessage(event.sender.id, {"text":" FROM BB "}); 
             }
