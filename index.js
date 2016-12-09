@@ -67,7 +67,10 @@ app.post('/webhook', function (req, res) {
             console.log("MON SIMPLE TEXT");
             var str=event.message.text;
             console.log("TEXT:"+str);
-            if(str.toLowerCase()=="bus")
+            if(str.toLowerCase()=="go"){
+                GetFrom(event.sender.id, event.message.text);
+            }
+            else if(str.toLowerCase()=="bus")
             {
                 AllBusCompany(event.sender.id,event.message.text);
                 //Getdirection(event.sender.id,event.message.text);
@@ -75,22 +78,11 @@ app.post('/webhook', function (req, res) {
             else if(str.toLowerCase()=="time")
             {
                 GetTime(event.sender.id, event.message.text);
+            }   AllBusCompany(event.sender.id,event.message.text);
+            else
+            {
+                
             }
-            // else if(str.toLowerCase()=="admin")
-            // {
-            //     sendMessage(event.sender.id,{"text": "Welcome ADMIN"});   
-            // }
-            // else if(str.toLowerCase()=="from")
-            // {
-            //     GetFrom(event.sender.id,event.message.text);
-            // }
-            // else if(str.toLowerCase()=="to")
-            // {
-            //     GetTo(event.sender.id,event.message.text);
-            // }
-            // else{
-            //     AllBusCompany(event.sender.id,event.message.text);
-            // }
         }
     }
     res.sendStatus(200);
@@ -293,7 +285,7 @@ function GetTime(recipientId, text){
     var rep = recipientId;
     if(text){
         var msg={
-            "text":"When do you want to come?:",
+            "text":"What time do you want to start leave?:",
             "quick_replies":[
                 {
                     "content_type":"text",
