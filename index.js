@@ -88,8 +88,9 @@ app.post('/webhook', function (req, res) {
                 GetTime(event.sender.id, event.message.text);
             }
             else{
+                sendMessage(event.sender.id, {"text":" userid "+event.sender.id});
                 //AllBusCompany(event.sender.id,event.message.text);
-                GetFrom(event.sender.id, event.message.text);
+                //GetFrom(event.sender.id, event.message.text);
             }  
             
 
